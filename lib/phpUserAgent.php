@@ -152,7 +152,12 @@ class phpUserAgent
    */
   public function getKnownBots()
   {
-    return array('googlebot');
+    return array(
+      'googlebot',
+      'msnbot',
+      'yahoobot',
+      'facebookbot'
+      );
   }
 
   /**
