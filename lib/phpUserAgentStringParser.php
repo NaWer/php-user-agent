@@ -39,7 +39,7 @@ class phpUserAgentStringParser
 
   /**
    * Detect quickly informations from the user agent string
-   * 
+   *
    * @param   string $userAgentString   user agent string
    * @return  array                     user agent informations array
    */
@@ -83,7 +83,7 @@ class phpUserAgentStringParser
 
     // Find operating system
     $pattern = '#'.join('|', $this->getKnownOperatingSystems()).'#';
-    
+
     if (preg_match($pattern, $userAgent['string'], $match))
     {
       if (isset($match[0]))
@@ -94,7 +94,7 @@ class phpUserAgentStringParser
 
     // Find engine
     $pattern = '#'.join('|', $this->getKnownEngines()).'#';
-    
+
     if (preg_match($pattern, $userAgent['string'], $match))
     {
       if (isset($match[0]))
@@ -143,12 +143,13 @@ class phpUserAgentStringParser
       'filterOperaVersion',
       'filterYahoo',
       'filterMsie',
+      'filterFacebookBot'
     );
   }
 
   /**
    * Add a filter to be called when parsing a user agent
-   * 
+   *
    * @param   string $filter name of the filter method
    */
   public function addFilter($filter)
@@ -308,14 +309,24 @@ class phpUserAgentStringParser
     }
   }
 
-    /**
-     * Android has a safari like signature
-     */
-    protected function filterAndroid(array &$userAgent) {
-        if ('safari' === $userAgent['browser_name'] && strpos($userAgent['string'], 'android ')) {
-            $userAgent['browser_name'] = 'android';
-            $userAgent['operating_system'] = 'android';
-            $userAgent['browser_version'] = preg_replace('|.+android ([0-9]+(?:\.[0-9]+)+).+|', '$1', $userAgent['string']);
-        }
+  /**
+   * Android has a safari like signature
+   */
+  protected function filterAndroid(array &$userAgent)
+  {
+      if ('safari' === $userAgent['browser_name'] && strpos($userAgent['string'], 'android '))
+      {
+          $userAgent['browser_name'] = 'android';
+          $userAgent['operating_system'] = 'android';
+          $userAgent['browser_version'] = preg_replace('|.+android ([0-9]+(?:\.[0-9]+)+).+|', '$1', $userAgent['string']);
+      }
+  }
+
+  protected function filterFacebookBot(array &$userAgent)
+  {
+    if('facebookexternalhit' === $userAgent['browser_name'])
+    {
+      $userAgent['browser_name'] = 'facebookbot';
     }
+  }
 }
