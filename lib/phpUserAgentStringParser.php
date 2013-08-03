@@ -204,13 +204,32 @@ class phpUserAgentStringParser
   protected function getKnownOperatingSystems()
   {
     return array(
-      'windows',
-      'macintosh',
-      'linux',
-      'freebsd',
-      'unix',
-      'iphone'
+  
+	  'Windows 8',
+      'Windows 7',
+      'Windows Vista',
+      'Windows Server 2003/XP x64',
+      'Windows XP',
+      'Windows XP',
+      'Windows 2000',
+      'Windows ME',
+      'Windows 98',
+      'Windows 95',
+      'Windows 3.11',
+      'Mac OS X',
+	  'Macintosh; Intel Mac OS X',
+      'Mac OS 9',	  
+      'Linux',
+      'Ubuntu',
+      'iPhone',
+      'iPod',
+      'iPad',
+      'Android',
+      'BlackBerry',
+      'Mobile'
+  
     );
+
   }
 
   /**
@@ -220,7 +239,30 @@ class phpUserAgentStringParser
    */
   protected function getKnownOperatingSystemAliases()
   {
-    return array();
+        return  array(
+                            'windows nt 6.2'            =>  'Windows 8',
+                            'windows nt 6.1'            =>  'Windows 7',
+                            'windows nt 6.0'            =>  'Windows Vista',
+                            'windows nt 5.2'            =>  'Windows Server 2003/XP x64',
+                            'windows nt 5.1'            =>  'Windows XP',
+                            'windows xp'                =>  'Windows XP',
+                            'windows nt 5.0'            =>  'Windows 2000',
+                            'windows me'                =>  'Windows ME',
+                            'win98'                     =>  'Windows 98',
+                            'win95'                     =>  'Windows 95',
+                            'win16'                     =>  'Windows 3.11',
+                            'macintosh|mac os x'        =>  'Mac OS X',
+                            'macintosh; intel mac os x' =>'Macintosh; Intel Mac OS X',    												
+                            'mac_powerpc'               =>  'Mac OS 9',
+                            'linux'                     =>  'Linux',
+                            'ubuntu'                    =>  'Ubuntu',
+                            'iphone'                    =>  'iPhone',
+                            'ipod'                      =>  'iPod',
+                            'ipad'                      =>  'iPad',
+                            'android'                   =>  'Android',
+                            'blackberry'                =>  'BlackBerry',
+                            'webos'                     =>  'Mobile'
+                        );
   }
 
   /**
