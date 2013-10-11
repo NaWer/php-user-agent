@@ -39,7 +39,7 @@ class phpUserAgentStringParser
 
   /**
    * Detect quickly informations from the user agent string
-   * 
+   *
    * @param   string $userAgentString   user agent string
    * @return  array                     user agent informations array
    */
@@ -83,7 +83,7 @@ class phpUserAgentStringParser
 
     // Find operating system
     $pattern = '#'.join('|', $this->getKnownOperatingSystems()).'#';
-    
+
     if (preg_match($pattern, $userAgent['string'], $match))
     {
       if (isset($match[0]))
@@ -94,7 +94,7 @@ class phpUserAgentStringParser
 
     // Find engine
     $pattern = '#'.join('|', $this->getKnownEngines()).'#';
-    
+
     if (preg_match($pattern, $userAgent['string'], $match))
     {
       if (isset($match[0]))
@@ -148,7 +148,7 @@ class phpUserAgentStringParser
 
   /**
    * Add a filter to be called when parsing a user agent
-   * 
+   *
    * @param   string $filter name of the filter method
    */
   public function addFilter($filter)
@@ -209,7 +209,8 @@ class phpUserAgentStringParser
       'linux',
       'freebsd',
       'unix',
-      'iphone'
+      'iphone',
+      'ipad'
     );
   }
 
