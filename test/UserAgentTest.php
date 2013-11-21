@@ -13,7 +13,7 @@ $t->is($userAgent->getBrowserName(), 'firefox', '$userAgent->getBrowserName() wo
 
 $t->is($userAgent->getBrowserVersion(), '3.6', '$userAgent->getBrowserVersion() works');
 
-$t->is($userAgent->getOperatingSystem(), 'linux', '$userAgent->getOperatingSystem() works');
+$t->is($userAgent->getOperatingSystem(), 'Linux', '$userAgent->getOperatingSystem() works');
 
 $t->is($userAgent->getEngine(), 'gecko', '$userAgent->getEngine() works');
 
