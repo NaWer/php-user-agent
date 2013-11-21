@@ -342,12 +342,18 @@ class phpUserAgentStringParser
 
   /**
    * MSIE does not always declare its engine
+   * IE11 hasn't msie in his user agent string
    */
   protected function filterMsie(array &$userAgent)
   {
     if ('msie' === $userAgent['browser_name'] && empty($userAgent['engine']))
     {
       $userAgent['engine'] = 'trident';
+    }
+    if (empty($userAgent['browser_name']) && ($userAgent['engine'] == 'trident') && strpos($userAgent['string'], 'rv:'))
+    {
+      $userAgent['browser_name'] = 'msie';
+      $userAgent['browser_version'] = preg_replace('|.+rv:([0-9]+(?:\.[0-9]+)+).+|', '$1', $userAgent['string']);
     }
   }
 
