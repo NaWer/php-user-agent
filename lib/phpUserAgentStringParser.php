@@ -143,6 +143,7 @@ class phpUserAgentStringParser
       'filterOperaVersion',
       'filterYahoo',
       'filterMsie',
+      'filterFacebookBot',
     );
   }
 
@@ -174,9 +175,10 @@ class phpUserAgentStringParser
       'gecko',
       'chrome',
       'googlebot',
+      'facebookbot',
       'iphone',
       'msnbot',
-      'applewebkit'
+      'applewebkit',
     );
   }
 
@@ -188,11 +190,12 @@ class phpUserAgentStringParser
   protected function getKnownBrowserAliases()
   {
     return array(
-      'shiretoko'     => 'firefox',
-      'namoroka'      => 'firefox',
-      'shredder'      => 'firefox',
-      'minefield'     => 'firefox',
-      'granparadiso'  => 'firefox'
+      'shiretoko'           => 'firefox',
+      'namoroka'            => 'firefox',
+      'shredder'            => 'firefox',
+      'minefield'           => 'firefox',
+      'granparadiso'        => 'firefox',
+      'facebookexternalhit' => 'facebookbot',
     );
   }
 
@@ -226,7 +229,7 @@ class phpUserAgentStringParser
       'Android',
       'BlackBerry',
       'Mobile',
-      'Linux'
+      'Linux',
 
     );
   }
@@ -259,7 +262,7 @@ class phpUserAgentStringParser
                             'android'                   =>  'Android',
                             'blackberry'                =>  'BlackBerry',
                             'webos'                     =>  'Mobile',
-                            'linux'                     =>  'Linux'
+                            'linux'                     =>  'Linux',
                         );
   }
 
@@ -274,7 +277,7 @@ class phpUserAgentStringParser
       'gecko',
       'webkit',
       'trident',
-      'presto'
+      'presto',
     );
   }
 
@@ -348,12 +351,25 @@ class phpUserAgentStringParser
     }
   }
 
-    /**
-     * Android has a safari like signature
-     */
-    protected function filterAndroid(array &$userAgent) {
-        if ('safari' === $userAgent['browser_name'] && strpos($userAgent['string'], 'Android ')) {
-            $userAgent['operating_system'] = preg_replace('|.+(Android [0-9]+(?:\.[0-9]+)+).+|', '$1', $userAgent['string']);
-        }
+  /**
+   * Android has a safari like signature
+   */
+  protected function filterAndroid(array &$userAgent)
+  {
+    if ('safari' === $userAgent['browser_name'] && strpos($userAgent['string'], 'Android '))
+    {
+        $userAgent['operating_system'] = preg_replace('|.+(Android [0-9]+(?:\.[0-9]+)+).+|', '$1', $userAgent['string']);
     }
+  }
+
+  /**
+   * Facebook external hit
+   */
+  protected function filterFacebookBot(array &$userAgent)
+  {
+    if ('facebookexternalhit' === $userAgent['browser_name'])
+    {
+      $userAgent['browser_name'] = 'facebookbot';
+    }
+  }
 }

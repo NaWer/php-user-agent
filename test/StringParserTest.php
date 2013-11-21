@@ -106,6 +106,10 @@ $tests = array(
   // Ipad
   'Mozilla/5.0 (iPad; CPU OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10B329 Safari/8536.25'
   => array('safari', '6.0', 'iPad', 'webkit'),
+
+  // Facebook
+  'facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)'
+  => array('facebookbot', '1.1', null, null),
 );
 
 $t = new lime_test(count($tests));
